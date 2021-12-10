@@ -14,8 +14,9 @@ public class InitServer {
 
         @Override
         public void run(){
-            System.out.printf("서버가 종료됩니다...");
+            System.out.printf("서버가 종료됩니다..");
             Lobby.shutdownServer();
+            System.out.printf("서버가 정상적으로 종료되었습니다.");
         }
 
     }
