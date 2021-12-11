@@ -782,8 +782,8 @@ public class User {
         long userid = r.readLong();
         User user = new User();
 
-        if(User.isUserOnline(userId)){
-            user = lobby.findOnlineUserbyUserId(userId);
+        if(User.isUserOnline(userid)){
+            user = lobby.findOnlineUserbyUserId(userid);
         }else{
             user.getUserInfoFromDB(userid);
         }
