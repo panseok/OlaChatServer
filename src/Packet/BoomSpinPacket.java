@@ -160,12 +160,6 @@ public class BoomSpinPacket {
             o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
         }
 
-        o.writeInt(PlayerSkillInfo.dead_player_skill_List.size());
-        for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.dead_player_skill_List){
-            o.writeInt(playerSkillInfo.getSkillcode());
-            o.writeLengthAsciiString(playerSkillInfo.getSkillname());
-            o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
-        }
 
         o.writeInt(PlayerSkillInfo.passive_skill_List.size());
         for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.passive_skill_List){
