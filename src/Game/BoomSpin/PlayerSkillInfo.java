@@ -3,9 +3,11 @@ package Game.BoomSpin;
 import DevTool.LittleEndianWriter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerSkillInfo {
+    public static List<PlayerSkillInfo> help_comment_list = new ArrayList<>();
     public static List<PlayerSkillInfo> dead_player_skill_List = new ArrayList<>();
     public static List<PlayerSkillInfo> passive_skill_List = new ArrayList<>();
     public static List<PlayerSkillInfo> auction_skill_List = new ArrayList<>();
@@ -14,6 +16,13 @@ public class PlayerSkillInfo {
     private String skillname, skillcomment;
 
     static{
+        help_comment_list.add(new PlayerSkillInfo(-1, "[폭탄돌리기]", "#p[최후의 1인]#l#w이 될때까지 살아남아라!#l"));
+        help_comment_list.add(new PlayerSkillInfo(-1, "[기본]", "#w날마다 폭탄이 1개씩 돌아가며#l #p[최후의 생존자]#l#w가 나올때까지 진행된다.#l"));
+        help_comment_list.add(new PlayerSkillInfo(-1, "[코인]", "#w날이 바뀔때 마다 #l#p[1000 코인]#l#w씩 지급되며 경매에서 쓸 수 있다.#l"));
+        help_comment_list.add(new PlayerSkillInfo(-1, "[능력]", "#w날이 바뀔때 마다 기본 능력이 초기화되며 기본 능력 목록 중 1개의 능력이 선정된다.#l"));
+        help_comment_list.add(new PlayerSkillInfo(-1, "[경매]", "#w날이 바뀔때 마다 시작되며 경매 능력 목록 중 1개의 능력이 판매된다.#l"));
+        help_comment_list.add(new PlayerSkillInfo(-1, "[채팅]", "#w오른쪽 상단의 말풍선 버튼을 이용하여 플레이어들과 채팅을 할 수 있다.#l"));
+
         dead_player_skill_List.add(new PlayerSkillInfo(-1, "#r[사망]#l", "여긴 어디일까 할 수 있는 것은 없어 보인다. 상황을 지켜보자."));
 
         passive_skill_List.add(new PlayerSkillInfo(0, "#r[봉인]#l", "#w턴마다 #l#p[5초]#l#w간 폭탄을 돌릴 수 없다.#l"));

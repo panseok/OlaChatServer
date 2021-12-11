@@ -252,6 +252,7 @@ public class BoomSpin{
         setSchedule(Timer.BoomSpinTimer.getInstance().schedule(new Runnable() {
             @Override
             public void run() {
+                sendPacket(BoomSpinPacket.sendSkillbookInfo());
                 sendNotice("[폭탄 돌리기 게임에 오신 것을 환영합니다]");
                 sendNotice("#y[게임이 시작됩니다]#l");
             }
@@ -270,7 +271,7 @@ public class BoomSpin{
 
                 cout++;
                 if(cout % 30 == 0){
-                    sendPacket(BoomSpinPacket.sendBoomSpinNotice("#b["+cout+"초]#l#w 경과 하였습니다."));
+                    sendPacket(BoomSpinPacket.sendBoomSpinNotice("#b["+cout+"초]#l#w 경과 하였습니다.#l"));
                 }
 
                 /*for(int i = 0; i < 100; i++){ //순간적으로 많은양의 데이터를 날려 어플리케이션 중지여부 테스트용
@@ -566,7 +567,7 @@ public class BoomSpin{
                 sendPacket(BoomSpinPacket.sendBoomSpinPlayerList(players));
                 sendMoney();
             }
-        },2000));
+        },3000));
     }
 
     public void resetRandomPlayerInfoList(){
@@ -610,7 +611,7 @@ public class BoomSpin{
             return;
         }
         if(player.hasSkill(2)){ //오작동
-            player.setBoomskill_percent(1); //초기화
+            player.setBoomskill_percent(0); //초기화
 
         }
 
@@ -739,7 +740,7 @@ public class BoomSpin{
                 sendNotice("능력은 날마다 지급되는 코인으로 구매할 수 있습니다.");
                 sendNotice("경매 중에는 다른 기능이 제한되며 익명으로 경매가 진행됩니다.");
             }
-        },5000);
+        },7000);
         Timer.BoomSpinTimer.getInstance().schedule(new Runnable() {
             @Override
             public void run() {
@@ -760,7 +761,7 @@ public class BoomSpin{
                 sendAuctionOpen(boomSpinAuction);
                 sendNotice("#p["+day+"번째 날]#l#w 능력 경매가 시작되었습니다.#l");
             }
-        },10000);
+        },12000);
     }
 
     public void sendAuctionOpen(BoomSpinAuction boomSpinAuction){

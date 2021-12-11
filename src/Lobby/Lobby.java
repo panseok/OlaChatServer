@@ -252,7 +252,7 @@ public class Lobby {
     }
 
     public static void shutdownServer(){
-        //유저리스트를 스태틱 변수로 하면 나중에 채널마다 로비클래스 생성이 의미가 있을까..?
+        //유저리스트를 스태틱 변수로 하면 나중에 채널마다 로비클래스 생성이 의미가 있을까..? 아마 로비(채널별)과 전체 유저리스트 따로따로 나눠야될듯.
 
         usersList.forEach(user -> {
             if(!user.saveToDB()){

@@ -4,6 +4,7 @@ import Data.User;
 import DevTool.LittleEndianWriter;
 import Game.BoomSpin.BoomSpinAuction;
 import Game.BoomSpin.PlayerInfo;
+import Game.BoomSpin.PlayerSkillInfo;
 import Opcode.SendOpcode;
 
 import java.util.List;
@@ -144,6 +145,42 @@ public class BoomSpinPacket {
         o.writeShort(SendOpcode.GAME_BOOM_SPIN.ordinal());
         o.writeInt(13);
         o.writeInt(code);
+        return o.getPacket();
+    }
+
+    public static byte[] sendSkillbookInfo(){
+        LittleEndianWriter o = new LittleEndianWriter();
+        o.writeShort(SendOpcode.GAME_BOOM_SPIN.ordinal());
+        o.writeInt(14);
+
+        o.writeInt(PlayerSkillInfo.help_comment_list.size());
+        for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.help_comment_list){
+            o.writeInt(playerSkillInfo.getSkillcode());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillname());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
+        }
+
+        o.writeInt(PlayerSkillInfo.dead_player_skill_List.size());
+        for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.dead_player_skill_List){
+            o.writeInt(playerSkillInfo.getSkillcode());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillname());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
+        }
+
+        o.writeInt(PlayerSkillInfo.passive_skill_List.size());
+        for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.passive_skill_List){
+            o.writeInt(playerSkillInfo.getSkillcode());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillname());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
+        }
+
+        o.writeInt(PlayerSkillInfo.auction_skill_List.size());
+        for(PlayerSkillInfo playerSkillInfo : PlayerSkillInfo.auction_skill_List){
+            o.writeInt(playerSkillInfo.getSkillcode());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillname());
+            o.writeLengthAsciiString(playerSkillInfo.getSkillcomment());
+        }
+
         return o.getPacket();
     }
 }
