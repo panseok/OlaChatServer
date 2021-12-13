@@ -352,25 +352,6 @@ public class BoomSpin{
         isBoomTimerRunning = false;
 
         if(getAlivePlayerList().size() == 1){
-           /* for(PlayerInfo player : players){
-                if(player.isAlive()){
-                    final PlayerInfo alivePlayer = player;
-                    sendPacket(BoomSpinPacket.sendShowBoomImg(10));
-                    sendPacket(BoomSpinPacket.sendBoomSpinNotice("#y다른 플레이어들의 #l#r[탈주]#l#y로 인해 혼자 남은 경우 #l#r[폭탄]#l#y은 터지지 않습니다.#l"));
-
-                    alivePlayer.getUser().addUserWin();
-                    player.getUser().getRoom().sendNotice("#y다른 플레이어들의 #l#r[탈주]#l#y로 인해 혼자 남은 경우 #l#r[폭탄]#l#y은 터지지 않습니다.#l");
-                    player.getUser().getRoom().sendNotice("#y["+alivePlayer.getUser().getUserName()+"]#l #w님이 #l#p[폭탄돌리기 최후의 1인]#l#w 으로 승리하셨습니다!");
-                    Timer.BoomSpinTimer.getInstance().schedule(new Runnable() {
-                        @Override
-                        public void run() {
-                            sendPacket(BoomSpinPacket.sendBoomSpinExit());
-                            alivePlayer.getUser().getRoom().setBoomSpin(null);
-                        }
-                    },3000);
-                    break;
-                }
-            }*/
 
             //탈주로 인한 폭탄이 터지지 않는 승부 결정
             if(getAlivePlayerList().size() == 1){
@@ -426,15 +407,6 @@ public class BoomSpin{
 
         int cout = getAlivePlayerList().size();
 
-       /* PlayerInfo alivePlayer = null;
-        for(PlayerInfo player : players){
-            if(player.isAlive()){
-                alivePlayer = player;
-                cout++;
-            }
-        }*/
-
-
         if(cout == 1){ //최후의 1인
             getAlivePlayerList().forEach((player -> {
                 player.getUser().getRoom().sendNotice("#y"+player.getUser().getUserName()+"#l #w님이 #l#p[폭탄돌리기 최후의 1인]#l#w 으로 승리하셨습니다!");
@@ -455,7 +427,7 @@ public class BoomSpin{
             },3000);
         }else if(cout == 0){
             //무승부
-            boomPlayer.getUser().getRoom().sendNotice("모두 죽어 무효 게임처리 되었습니다.");
+            boomPlayer.getUser().getRoom().sendNotice("모두 사망하여 승패가 기록되지 않습니다..");
             PlayerInfo finalBoomPlayer = boomPlayer;
             Timer.BoomSpinTimer.getInstance().schedule(new Runnable() {
                 @Override
@@ -501,8 +473,8 @@ public class BoomSpin{
     }
 
     public boolean handleAliveSkill(PlayerInfo player, boolean isBoom){
-        // isBoom > 폭사인지 동반자스킬인지 구분용
-        boolean isAlive = false;
+        // isBoom > 폭사인지 동반자스킬인지 구분용     ,  다 if문으로 하고 바로 리턴 시키는게 아래스킬들을 2개이상 가지고 있어도 둘다 확률이 생기지 않을까?..
+        boolean isAlive = true;
 
         if(player.hasSkill(4) && !isBoom) { //방탄 헬멧
             if(random.nextInt(100) < 24){
@@ -516,7 +488,7 @@ public class BoomSpin{
             sendPacket(BoomSpinPacket.sendBoomSpinNotice("["+player.getUser().getUserName()+"] 님이 "+player.getSkill(10).getSkillname()+" 으로 생존하였습니다!!"));
             isAlive = true;
         }else if(player.hasSkill(11) && isBoom) { //럭키가이
-            if(random.nextInt(100) < 24){
+            if(random.nextInt(100) < 49){
                 sendPacket(BoomSpinPacket.sendBoomSpinNotice("["+player.getUser().getUserName()+"] 님이 "+player.getSkill(11).getSkillname()+" 으로 생존하였습니다!!"));
                 isAlive = true;
                 List<PlayerInfo> aPlayer = getAlivePlayerList();
@@ -672,7 +644,7 @@ public class BoomSpin{
         }
 
         boomSpin.sendPacket(BoomSpinPacket.sendBoomSpinPlayerList(boomSpin.players));
-        boomSpin.sendPacket(BoomSpinPacket.sendBoomSpinNotice(user.getUserName()+" 님이 폭탄을 돌렸습니다!"));
+        //boomSpin.sendPacket(BoomSpinPacket.sendBoomSpinNotice(user.getUserName()+" 님이 폭탄을 돌렸습니다!"));
     }
 
     public void calcPlayersetHighPricePlayer(PlayerInfo playerInfo,int price){

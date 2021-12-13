@@ -33,7 +33,7 @@ public class PlayerSkillInfo {
         passive_skill_List.add(new PlayerSkillInfo(5, "#g[방패]#l", "#w폭탄이 터지는 것으로 부터 생존 할 수 있다.#l"));
 
         auction_skill_List.add(new PlayerSkillInfo(10, "#g[방탄조끼]#l", "#w폭탄이 터지거나#l #o[자폭] [럭키가이]#l #w으로부터 생존 할 수 있다.#l"));
-        auction_skill_List.add(new PlayerSkillInfo(11, "#o[럭키가이]#l", "#p[25%]#l #w확률로 폭탄이 터지면 플레이어 중 한명이 대신 피해를 받는다.#l"));
+        auction_skill_List.add(new PlayerSkillInfo(11, "#o[럭키가이]#l", "#p[50%]#l #w확률로 폭탄이 터지면 플레이어 중 한명이 대신 피해를 받는다.#l"));
         auction_skill_List.add(new PlayerSkillInfo(12, "#g[천리안]#l", "#w폭탄이 언제 터지는지 타이머를 볼 수 있게 된다.#l"));
         auction_skill_List.add(new PlayerSkillInfo(13, "#g[시간왜곡]#l", "#w나를 제외한 플레이어들에게 폭탄을 턴마다 #l#p[5초]#l#w간 돌릴 수 없게 만든다.#l"));
         auction_skill_List.add(new PlayerSkillInfo(14, "#y[바이러스]#l", "#w모든 플레이어들이 폭탄을 돌릴때마다#l #p[1~10초]#l#w씩 폭파 시간을 앞당긴다.#l"));
