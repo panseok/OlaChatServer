@@ -287,7 +287,9 @@ public class User {
         try {
             con = DatabaseConnection.getConnection();
 
-            ps = con.prepareStatement("SELECT * FROM user");
+            ps = con.prepareStatement("SELECT * FROM user WHERE userName = ?");
+            ps.setString(1,userName);
+
             rs = ps.executeQuery();
 
 
@@ -295,14 +297,11 @@ public class User {
                 rs.close();
                 ps.close();
                 con.close();
-                throw new RuntimeException("(checkUserNameToDB) 유저이름을 불러올수 없습니다.");
-            }
-
-            name = rs.getString("userName");
-
-            if(name.equals(userName)){
+                return false;
+            }else{
                 isExists = true;
             }
+
 
             ps.close();
             rs.close();
